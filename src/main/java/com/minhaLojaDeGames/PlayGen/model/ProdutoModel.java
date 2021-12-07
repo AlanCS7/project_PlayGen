@@ -7,10 +7,13 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.minhaLojaDeGames.PlayGen.model.enums.ProdutoEnums;
 
 /**
@@ -24,32 +27,37 @@ import com.minhaLojaDeGames.PlayGen.model.enums.ProdutoEnums;
 @Entity
 @Table(name = "tb_produtos")
 public class ProdutoModel {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idProdutos;
-	
+	private Long idProduto;
+
 	@NotBlank
-	@Size(min = 5, max = 100)
+	@Size(min = 2, max = 100)
 	private String nome;
-	
+
 	@NotBlank
 	@Size(min = 2, max = 100)
 	private String desenvolvedora;
-	
+
 	@NotBlank
 	private Double preco;
-	
+
 	@Column(columnDefinition = "ENUM('PLAYSTATION', 'XBOX', 'PC', 'NINTENDO', 'MULTIPLATAFORMA')")
 	@Enumerated(EnumType.STRING)
 	private ProdutoEnums plataforma;
 
-	public Long getIdProdutos() {
-		return idProdutos;
+	@ManyToOne
+	@JoinColumn(name = "fk_categoria")
+	@JsonIgnoreProperties("produtos")
+	private CategoriaModel categoria;
+
+	public Long getIdProduto() {
+		return idProduto;
 	}
 
-	public void setIdProdutos(Long idProdutos) {
-		this.idProdutos = idProdutos;
+	public void setIdProduto(Long idProduto) {
+		this.idProduto = idProduto;
 	}
 
 	public String getNome() {
@@ -83,5 +91,13 @@ public class ProdutoModel {
 	public void setPlataforma(ProdutoEnums plataforma) {
 		this.plataforma = plataforma;
 	}
-		
+
+	public CategoriaModel getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(CategoriaModel categoria) {
+		this.categoria = categoria;
+	}
+
 }
