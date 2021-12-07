@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -40,7 +41,7 @@ public class ProdutoModel {
 	@Size(min = 2, max = 100)
 	private String desenvolvedora;
 
-	@NotBlank
+	@NotNull
 	private Double preco;
 
 	@Column(columnDefinition = "ENUM('PLAYSTATION', 'XBOX', 'PC', 'NINTENDO', 'MULTIPLATAFORMA')")
