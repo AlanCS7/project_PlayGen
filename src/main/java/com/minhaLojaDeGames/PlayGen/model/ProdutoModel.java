@@ -1,5 +1,6 @@
 package com.minhaLojaDeGames.PlayGen.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -39,6 +40,7 @@ public class ProdutoModel {
 	@NotBlank
 	private Double preco;
 	
+	@Column(columnDefinition = "ENUM('PLAYSTATION', 'XBOX', 'PC', 'NINTENDO', 'MULTIPLATAFORMA')")
 	@Enumerated(EnumType.STRING)
 	private ProdutoEnums plataforma;
 
