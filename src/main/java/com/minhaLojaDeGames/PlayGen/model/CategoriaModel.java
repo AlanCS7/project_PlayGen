@@ -1,9 +1,14 @@
 package com.minhaLojaDeGames.PlayGen.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
@@ -25,6 +30,9 @@ public class CategoriaModel {
 	private @NotBlank String categoria;
 
 	private @NotBlank String subcategoria;
+
+	@OneToMany(mappedBy = "categoria", cascade = CascadeType.REMOVE)
+	private List<ProdutoModel> produtos = new ArrayList<>();
 
 	public Long getIdCategoria() {
 		return idCategoria;
@@ -48,6 +56,14 @@ public class CategoriaModel {
 
 	public void setSubcategoria(String subcategoria) {
 		this.subcategoria = subcategoria;
+	}
+
+	public List<ProdutoModel> getProdutos() {
+		return produtos;
+	}
+
+	public void setProdutos(List<ProdutoModel> produtos) {
+		this.produtos = produtos;
 	}
 
 }

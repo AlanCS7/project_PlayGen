@@ -21,12 +21,20 @@ import org.springframework.web.server.ResponseStatusException;
 import com.minhaLojaDeGames.PlayGen.model.CategoriaModel;
 import com.minhaLojaDeGames.PlayGen.repository.CategoriaRepository;
 
+/**
+ * Classe responsável pelo CRUD
+ * 
+ * @author Lucas Melo
+ * @since 1.0
+ * 
+ */
+
 @RestController
 @RequestMapping("/playGen/categoria")
 @CrossOrigin("*")
 public class CategoriaController {
 
-	@Autowired 
+	@Autowired
 	private CategoriaRepository repository;
 
 	@GetMapping
@@ -34,7 +42,7 @@ public class CategoriaController {
 		return ResponseEntity.ok(repository.findAll());
 	}
 
-	@GetMapping("/{id}") 
+	@GetMapping("/{id}")
 	public ResponseEntity<CategoriaModel> GetById(@PathVariable(value = "id") long id) {
 		return repository.findById(id).map(resp -> ResponseEntity.status(200).body(resp))
 				.orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Id não existe"));
@@ -47,7 +55,7 @@ public class CategoriaController {
 
 	}
 
-	@PostMapping("/save") 
+	@PostMapping("/save")
 	public ResponseEntity<CategoriaModel> post(@Valid @RequestBody CategoriaModel categoria) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(categoria));
 	}
