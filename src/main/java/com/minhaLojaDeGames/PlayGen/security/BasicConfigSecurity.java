@@ -17,9 +17,12 @@ public class BasicConfigSecurity extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-
+		
 		auth.userDetailsService(userDetailsImplement);
-
+		
+		//auth.inMemoryAuthentication().withUser("boaz").password(passwordEncoder().encode("boaz"))
+		//.authorities("ROLE_ADMIN");
+		
 	}
 	
 	@Bean

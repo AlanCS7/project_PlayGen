@@ -61,7 +61,7 @@ public class UsuarioServices {
                     credencias.setIdUsuario(resp.getIdUsuario());
                     credencias.setEmail(resp.getEmail());
                     credencias.setToken(resp.getToken());
-                    credencias.setTokenBasic(geradorTokenBasic(resp.getEmail(), resp.getSenha()));
+                    credencias.setTokenBasic(geradorTokenBasic(usuario.getEmail(), usuario.getSenha()));
 
                     return  ResponseEntity.status(200).body(credencias);
                 } else {

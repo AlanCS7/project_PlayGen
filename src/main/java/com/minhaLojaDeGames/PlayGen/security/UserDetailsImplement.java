@@ -10,18 +10,16 @@ import com.minhaLojaDeGames.PlayGen.model.UsuarioModel;
 
 public class UserDetailsImplement implements UserDetails {
 	private static final long serialVersionUID = 1L;
-	
+
 	private String email;
 	private String password;
-	
+
 	private List<GrantedAuthority> authorities;
-	
-	
-	
+
 	public UserDetailsImplement(UsuarioModel user) {
 		this.email = user.getEmail();
 		this.password = user.getSenha();
-		
+
 	}
 
 	@Override
